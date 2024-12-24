@@ -11,7 +11,7 @@ git clone https://github.com/Dodgemaster1/AsyncTCPServer.git
 2. Navigate to the project directory:
 
 ```bash
-cd AsyncTCPServer
+cd AsyncTCPServer/src
 ```
 
 3. Run the server:
