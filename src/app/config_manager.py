@@ -40,9 +40,8 @@ class ConfigManager:
             return modem_port, program_port
         except (KeyError, configparser.ParsingError, ValueError):
             log.error(
-                f"Wrong ports, set to defaults: "
-                f"modem = {DEFAULT_MODEM_PORT}, "
-                f"program = {DEFAULT_PROGRAM_PORT}"
+                "Wrong ports, set to defaults: modem = %s, program = %s",
+                DEFAULT_MODEM_PORT, DEFAULT_PROGRAM_PORT
             )
         self._create_config()
         return DEFAULT_MODEM_PORT, DEFAULT_PROGRAM_PORT
@@ -58,10 +57,7 @@ class ConfigManager:
             log_level = LogLevel[self.config['LOGGER']['log_level'].upper()]
             return log_level.value
         except (KeyError, configparser.ParsingError):
-            log.error(
-                f"Can't find log level, set to default: "
-                f"{DEFAULT_LOG_LEVEL.name}"
-            )
+            log.error("Can't find log level, set to default: %s", DEFAULT_LOG_LEVEL.name)
         self._create_config()
         return DEFAULT_LOG_LEVEL.value
 

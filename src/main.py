@@ -1,11 +1,10 @@
 import asyncio
 import ctypes
 import logging
-import os
 import platform
 import sys
-from src.server import run_servers
-from src.setup_logger import setup_logger
+from app.server import run_servers
+from app.setup_logger import setup_logger
 
 
 # Disable quick edit mode for console in windows
@@ -25,7 +24,6 @@ if __name__ == '__main__':
     setup_logger()
     log = logging.getLogger(__name__)
     log.debug(sys.version)
-    log.debug(f"PID = {os.getpid()}")
 
     if platform.system() == 'Windows':
         disable_quick_edit()

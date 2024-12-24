@@ -21,7 +21,7 @@ class Server:
         except OSError:
             raise PortInUseError(port=self.port)
         async with server:
-            log.info(f"{self.kind.value} server listening on: {self.port}")
+            log.info("%s server listening on: %s", self.kind.value, self.port)
             await server.serve_forever()
 
 
@@ -46,6 +46,6 @@ async def run_servers():
             )
 
         except Exception as e:
-            log.error(f"Critical error: {e}", exc_info=False)
+            log.error("Critical error: %s", e, exc_info=False)
             log.info("Reload servers in 30 seconds...")
             await asyncio.sleep(30)

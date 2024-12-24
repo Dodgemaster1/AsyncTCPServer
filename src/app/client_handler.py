@@ -29,18 +29,17 @@ class ClientHandler:
         except InitializeConnectionError as e:
             log.info(e)
         except ConnectionResetError:
-            log.debug(f"{self.client} reset connection")
+            log.debug("%s reset connection", self.client)
         except Exception as e:
-            log.error(f"Unexpected error in handle_client: {e}", exc_info=True)
+            log.error("Unexpected error in handle_client: %s", e, exc_info=True)
         finally:
             try:
-                log.info(f"Connection closed: {self.client}")
+                log.info("Connection closed: %s", self.client)
                 await self.connections_manager.disconnect(self.client)
             except Exception as e:
-                log.debug(f"Unexpected error while disconnecting {self.client}: {e}", exc_info=True)
+                log.debug("Unexpected error while disconnecting %s: %s", self.client, e, exc_info=True)
             finally:
-                log.debug(f"Current connections: {self.connections_manager.connections}")
-
+                log.debug("Current connections: %s", self.connections_manager.connections)
 
     async def _get_modem_nuber(self) -> int:
         conn_message = await self._get_conn_message()
